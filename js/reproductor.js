@@ -98,10 +98,12 @@ var Rep = {
 
                 //console.log("value: " + value + "index: " + index);
 
-                console.log("strPublicURL: " + strPublicURL);
+                var videoURL = ('recursos/' + value).replace('//', '/');
+                var strPublicVideoURL = strPublicURL + videoURL;
+                console.log("strPublicVideoURL: " + strPublicVideoURL);
                 console.log("Video SRC:" + Rep.htmlElements.videoplayer.src);
 
-                if (Rep.htmlElements.videoplayer.src === strPublicURL + '/recursos/' + value) {
+                if (Rep.htmlElements.videoplayer.src === (strPublicURL + ('recursos/' + value).replace('//', '/'))) {
 
                     console.log("Video encontrado, buscando el siguiente");
 
