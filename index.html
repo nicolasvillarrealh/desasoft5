@@ -16,19 +16,6 @@
     <link href="materialize/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Styles -->
-    <style>
-        /* 
-
-            .card-image.center {
-                text-align: center;
-                font-size: 2.5em;
-
-                vertical-align: middle;
-                padding-top: 5px;
-            } */
-    </style>
-
 </head>
 
 <body>
@@ -69,118 +56,6 @@ Recuerda descativar la politica en Chrome
 chrome://flags/#autoplay-policy
 seleccionar: "No user gesture is required"
 -->
-
-                <script>
-                    var Rep = {
-                        htmlElements: {
-                            videoplayer: document.getElementById('videoplayer'),
-                            //        btnScaleDemo: document.getElementById('scale-demo')
-                        },
-                        data: {
-                            sources: [
-                                'Parcial2.mp4', 'Secuencia1.mp4',
-                            ],
-                            actual: "",
-                        },
-                        init: function() {
-
-                            console.log('Initializing Rep');
-
-                            console.log(Rep.data.sources);
-
-                            var videoplayer = Rep.htmlElements.videoplayer;
-                            // videoplayer.width = 1080;
-                            // videoplayer.height = 720;
-                            //videoplayer.style = 'max-width: 100%;'
-                            //            videoplayer.src = './recursos/video4.mp4';
-                            videoplayer.src = './recursos/' + Rep.data.sources[0];
-                            //        videoplayer.setAttribute('loop', '');
-                            videoplayer.setAttribute('autoplay', '');
-                            videoplayer.setAttribute('muted', '');
-                            videoplayer.setAttribute('controls', '');
-                            //Rep.htmlElements.videoplayer.play(); 
-                            videoplayer.load();
-
-                            //videoplayer.preload = 'metadata';
-                            videoplayer.onloadedmetadata = function() {
-                                console.log(this.duration + ' segundos');
-                                document.getElementById("circulo").style.animationDuration = this.duration + "s";
-                                document.getElementById("circulo").style.animationName = 'rodar';
-                            }
-
-
-                            Rep.initHandlers();
-
-                            //        videoplayer.play();
-
-                            //        videoplayer.removeAttribute('muted');
-                        },
-                        initHandlers: function() {
-                            var videoplayer = Rep.htmlElements.videoplayer;
-                            videoplayer.addEventListener('ended', function() {
-                                //console.log('Video Finalizado');
-                                var videoplayer = Rep.htmlElements.videoplayer;
-                                //                var btnScaleDemo = Rep.htmlElements.btnScaleDemo;
-
-                                console.table(Rep.data.sources);
-
-                                Rep.data.sources.map(function(value, index, array) {
-
-                                    var strPublicURL = "https://localhost/reproductorutp/public";
-
-                                    //console.log("value: " + value + "index: " + index);
-
-                                    //console.log("Video SRC:" + Rep.htmlElements.videoplayer.src);
-
-                                    if (Rep.htmlElements.videoplayer.src === strPublicURL + '/recursos/' + value) {
-
-                                        console.log("Video encontrado, buscando el siguiente");
-
-                                        if ((index + 1) >= Rep.data.sources.length) {
-                                            strVideoSrc = Rep.data.sources[0];
-                                        } else {
-                                            strVideoSrc = Rep.data.sources[index + 1];
-                                        }
-
-
-
-                                        console.log("strVideoSrc: [" + strVideoSrc + "]");
-                                        Rep.data.actual = strVideoSrc;
-
-
-                                    }
-
-                                });
-
-                                videoplayer.src = './recursos/' + Rep.data.actual;
-
-
-
-                                /*
-                                 if (videoplayer.src === strPublicURL + '/recursos/video3.mp4') {
-                                 videoplayer.src = './recursos/video4.mp4';
-                                 } else {
-                                 videoplayer.src = './recursos/video3.mp4';
-                                 }
-                                 */
-
-                                console.log('Cambiando  Video');
-                                videoplayer.load();
-
-                                videoplayer.play();
-                                console.log('Video Nuevo');
-
-
-
-                                //                btnScaleDemo.classList.add('scale-in');
-                                //
-                                //                $('#scale-demo').addClass('animated bounceOutLeft');
-                            });
-                        }
-                    };
-
-                    Rep.init();
-                </script>
             </div>
             <div class="col s12 m12 l6">
                 <div class="card sunglow">
@@ -240,67 +115,7 @@ seleccionar: "No user gesture is required"
     <!--materialize js-->
     <script type="text/javascript" src="materialize/js/materialize.js"></script>
     <script type="text/javascript" src="js/reproductor.js"></script>
-
-    <script>
-        var TxtRotate = function(el, toRotate, period) {
-            this.toRotate = toRotate;
-            this.el = el;
-            this.loopNum = 0;
-            this.period = parseInt(period, 10) || 2000;
-            this.txt = '';
-            this.tick();
-            this.isDeleting = false;
-        };
-
-        TxtRotate.prototype.tick = function() {
-            var i = this.loopNum % this.toRotate.length;
-            var fullTxt = this.toRotate[i];
-            if (this.isDeleting) {
-                this.txt = fullTxt.substring(0, this.txt.length - 1);
-            } else {
-                this.txt = fullTxt.substring(0, this.txt.length + 1);
-            }
-
-            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-            var that = this;
-            var delta = 300 - Math.random() * 100;
-            if (this.isDeleting) {
-                delta /= 2;
-            }
-
-            if (!this.isDeleting && this.txt === fullTxt) {
-                delta = this.period;
-                this.isDeleting = true;
-            } else if (this.isDeleting && this.txt === '') {
-                this.isDeleting = false;
-                this.loopNum++;
-                delta = 500;
-            }
-
-            setTimeout(function() {
-                that.tick();
-            }, delta);
-        };
-
-        window.onload = function() {
-            var elements = document.getElementsByClassName('txt-rotate');
-            for (var i = 0; i < elements.length; i++) {
-                var toRotate = elements[i].getAttribute('data-rotate');
-                var period = elements[i].getAttribute('data-period');
-                if (toRotate) {
-                    new TxtRotate(elements[i], JSON.parse(toRotate), period);
-                }
-            }
-
-            // INJECT CSS
-            var css = document.createElement("style");
-            css.type = "text/css";
-            css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
-            document.body.appendChild(css);
-
-            intervaloDeReloj = setInterval(cargarReloj, 1000);
-        };
-    </script>
+    <script type="text/javascript" src="js/video.js"></script>
 </body>
 
 </html>
