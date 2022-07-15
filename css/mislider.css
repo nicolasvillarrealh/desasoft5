@@ -1,0 +1,194 @@
+/* $sunglow: #FFCF3Fff;
+$turquoise: #74E2CCff;
+$vivid-sky-blue: #20C5FAff;
+$yellow-green-crayola: #C6EB80ff;
+$cinnabar: #E34233ff; */
+
+body {
+    background-image: linear-gradient(to right top, #051937, #3d2458, #7e2263, #bb1f56, #e34233);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.app-titulo>h5 {
+    font-family: 'Pacifico', cursive;
+    font-size: xx-large;
+    color: #74E2CC;
+}
+
+#galeria-titulo {
+    font-size: x-large;
+}
+
+.cinnabar {
+    background-color: #E34233;
+    color: white;
+}
+
+.sunglow {
+    background-color: #FFCF3F;
+    color: #E34233;
+}
+
+.sunglow.light {
+    background-color: #ffff73;
+    color: black;
+}
+
+.galeria>div>img {
+    width: 600px;
+    height: 600px;
+}
+
+#videoplayer {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+}
+
+div.noticias {
+    white-space: no-wrap;
+}
+
+div.noticias>div.noticias-text {
+    white-space: nowrap;
+    display: inline;
+    width: auto;
+    font-size: 2.5em;
+    animation-name: noticias;
+    animation-duration: 300s;
+    /*5 minutos*/
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    color: #74E2CC;
+}
+
+@keyframes noticias {
+    from {
+        margin-left: 0%;
+    }
+    to {
+        margin-left: -2400%;
+    }
+}
+
+.noticias_etiqueta {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #FFCF3F;
+    font-size: 42px;
+    position: absolute;
+    background-color: #20C5FA;
+    height: 70px;
+    width: 175px;
+    left: 0;
+    padding: 5px;
+}
+
+
+/*******************************************************/
+
+#burbuja {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100px;
+    animation: burbujear 5s infinite alternate-reverse ease-in-out;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 100px;
+}
+
+@keyframes burbujear {
+    0% {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 100px;
+        background-color: #FFCF3Fff;
+        color: black;
+    }
+    20% {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 100px;
+        border-bottom-left-radius: 10px;
+        background-color: #74E2CC;
+        color: black;
+    }
+    40% {
+        border-top-left-radius: 50px;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 25px;
+        background-color: #20C5FA;
+        color: white;
+    }
+    60% {
+        border-top-left-radius: 100px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 50px;
+        background-color: #C6EB80;
+        color: black;
+    }
+    80% {
+        border-top-left-radius: 100px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 50px;
+        background-color: #C6EB80;
+        color: white;
+    }
+}
+
+
+/*********************************/
+
+.circulo {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 10px;
+    /* border-radius: 50%; */
+    /* animation-name: rodar; */
+    /* animation-duration: 10s; */
+    animation-iteration-count: infinite;
+    position: relative;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes rodar {
+    0% {
+        left: 0%;
+        right: 0%;
+        background-color: #FFCF3Fff;
+    }
+    20% {
+        background-color: #74E2CC;
+    }
+    40% {
+        background-color: #20C5FA;
+    }
+    60% {
+        background-color: #C6EB80;
+    }
+    80% {
+        background-color: #C6EB80;
+    }
+    100% {
+        left: 100%;
+        width: 0%;
+        background-color: #000000;
+    }
+}
